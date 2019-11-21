@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
     SensorManager sensorManager;
-    TextView textView;;
+    TextView textView,textView1;
     Sensor lightSensor,proxySensor,tempSensor,accSensor,magSensor;
     float[] accarr=new float[3];
     float[] magnetic=new float[3];
@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         setContentView(R.layout.activity_main);
 
         textView=findViewById(R.id.tvsensor);
+        textView1=findViewById(R.id.text1);
         sensorManager=(SensorManager)getSystemService(Context.SENSOR_SERVICE);
 
         lightSensor=sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         StringBuilder sb=new StringBuilder();
         for(Sensor s:sensorList){
-            String s1="Name: "+s.getName()+"Vendor: "+ s.getVendor()+ "Motion:"+s.getVersion();
+            String s1="Name: "+s.getName()+" \n Vendor: "+ s.getVendor()+ " \n Motion:"+s.getVersion();
             sb.append(s1+"\n");
         }
         textView.setText(sb);
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             float pitch=orientation[1];
             float roll=orientation[2];
 
-            textView.setText("Azimut: \n"+azimut+"pitch \n"+pitch+"roll \n"+roll);
+            textView1.setText("  Azimut: "+azimut+" \n  pitch "+pitch+"  \n  roll "+roll);
         }
     }
     @Override
